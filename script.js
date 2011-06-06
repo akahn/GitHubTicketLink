@@ -6,9 +6,16 @@ $('.commit .human pre').each(function(i, elem) {
       message = commit.text();
 
   if (message.match(ticketRegexp)) {
-    message = message.replace(/\#(\d+)/, function(match) {
-      var link = '<a style="color:#4183C4" href="' + ticketUrl + match.substring(1) + '">' + match + '</a>';
-      return link;
+    message = message.replace(ticketRegexp, function(match) {
+      var link = $('<div><a></a></div>');
+
+      link
+        .find('a')
+        .css('color', '#4133C4')
+        .attr('href', ticketUrl + match.substring(1))
+        .text(match);
+
+      return link.html();
     });
 
     commit.html(message);
