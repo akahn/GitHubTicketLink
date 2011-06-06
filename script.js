@@ -7,7 +7,7 @@ $('.commit .human pre').each(function(i, elem) {
 
   if (message.match(ticketRegexp)) {
     message = message.replace(/\#(\d+)/, function(match) {
-      var link = '<a href="' + ticketUrl + match.substring(1) + '">' + match + '</a>';
+      var link = '<a style="color:#4183C4" href="' + ticketUrl + match.substring(1) + '">' + match + '</a>';
       return link;
     });
 
