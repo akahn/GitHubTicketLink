@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>GitHub Issue Link Options</title>
+    <script src="jquery.js"></script>
+    <script>
+      // Communicate about what's in our localStorage
+      chrome.extension.onRequest.addListener(function(request, sender, sendRequest) {
+        console.log('received request');
+        if (request.method == 'getConfig') {
+          sendResponse({repoName: localStorage['repoName'], ticketUrl: localStorage['ticketUrl']});
+        }
+        else {
+          sendResponse({});
+        }
+      });
+
+      $(document).ready(function() {
+        // Default form values to settings in localStorage
+        $(':text').each(function(i, elem) {
+          var $input = $(elem),
+              key = $input.attr('name');
+
+          $input.val(localStorage[key]);
+        });
+
+        // Save form data to localStorage on submit
+        $('form').submit(function(event) {
+          $(':text').each(function(i, elem) {
+            var $input = $(elem);
+
+            localStorage[$input.attr('name')] = $input.val();
+          });
+
+          alert('Settings saved.');
+          return false;
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>GitHub Issue Link</h1>
+    <form>
+      <div>
+        <label for="repoName">Repository name:</label>
+        <input name="repoName">
+        <p>What is the name of this repository on GitHub?</p>
+      </div>
+
+      <div>
+        <label type=url for="ticketUrl">Ticket URL:</label>
+        <input name="ticketUrl" style="width: 400px">
+        <p>Use "###" as a placeholder for where the ticket number should go.</p>
+      </div>
+
+      <input type="submit"></input>
+    </form>
+  </body>
+</html>

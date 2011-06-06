@@ -4,9 +4,11 @@
   "description": "Link from GitHub commits to third-party bug trackers",
   "content_scripts": [
     {
-      "matches": ["https://github.com/*/paperless-post/commit/*"],
+      "matches": ["https://github.com/*/commit/*"],
       "js": ["jquery.js", "script.js"]
     }
-  ]
+  ],
+  "options_page": "options.html",
+  "background_page": "background.html"
 }
 
