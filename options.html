@@ -3,17 +3,6 @@
     <title>GitHub Issue Link Options</title>
     <script src="jquery.js"></script>
     <script>
-      // Communicate about what's in our localStorage
-      chrome.extension.onRequest.addListener(function(request, sender, sendRequest) {
-        console.log('received request');
-        if (request.method == 'getConfig') {
-          sendResponse({repoName: localStorage['repoName'], ticketUrl: localStorage['ticketUrl']});
-        }
-        else {
-          sendResponse({});
-        }
-      });
-
       $(document).ready(function() {
         // Default form values to settings in localStorage
         $(':text').each(function(i, elem) {

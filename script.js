@@ -1,6 +1,7 @@
+console.log('running');
 chrome.extension.sendRequest({method: "getConfig"}, function(response) {
-  console.log('running');
-  if (window.location.match(new RegExp('https://github.com/.+/' + response.repoName + '/commit/.+'))) {
+  console.log('response:', response);
+  if (window.location.href.match(new RegExp('https://github.com/.+/' + response.repoName + '/commit/.+'))) {
     var ticketUrl = response.ticketUrl,
         ticketRegexp = /\#(\d+)/;
 
