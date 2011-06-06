@@ -1,0 +1,12 @@
+{
+  "name": "GitHub Ticket Link",
+  "version": "0.1.0",
+  "description": "Link from GitHub commits to third-party bug trackers",
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*/paperless-post/commit/*"],
+      "js": ["jquery.js", "script.js"]
+    }
+  ]
+}
+
